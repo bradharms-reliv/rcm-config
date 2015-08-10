@@ -19,7 +19,7 @@ interface ModelInterface
 {
 
     /**
-     * getFormats
+     * getAll
      *
      * @param mixed $id
      *
@@ -28,7 +28,7 @@ interface ModelInterface
     public function getAll($id);
 
     /**
-     * getFormat
+     * getPrimary
      *
      * @param mixed $id
      *
@@ -39,7 +39,7 @@ interface ModelInterface
     /**
      * getDefault
      *
-     * @return mixed
+     * @return array
      */
     public function getDefault();
 }

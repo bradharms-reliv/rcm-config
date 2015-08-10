@@ -40,7 +40,7 @@ class ConfigService
         $config,
         ServiceLocatorInterface $serviceLocator
     ) {
-        $this->config = $config['Reliv\RcmConfig'];
+        $this->config = $config;
         $this->serviceLocator = $serviceLocator;
     }
 
@@ -104,17 +104,17 @@ class ConfigService
     {
         $type = (string)$type;
 
-        if (!isset($this->config['Reliv\RcmConfig'][$type])) {
+        if (!isset($this->config['Reliv\RcmConfig\Models'][$type])) {
             throw new ServiceConfigException(
-                "Service configuration not defined for type: {$type}"
+                "Model configuration not defined for type: {$type}"
             );
         }
 
-        $service = $this->config['Reliv\RcmConfig'][$type];
+        $service = $this->config['Reliv\RcmConfig\Models'][$type];
 
         if (!$this->serviceLocator->has($service)) {
             throw new ServiceConfigException(
-                "Service configuration not defined for type: {$type}"
+                "Model service not defined for type: {$type}"
             );
         }
 

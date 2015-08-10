@@ -6,20 +6,26 @@ return [
     'Reliv\RcmConfig' => [
         /* <example> *
         'someConfigType' => [
-            '_DEFAULT' => 'DEFAULT-FORMAT',
+            '_DEFAULT' => [
+                'DEFAULT-FORMAT',
+            ],
             'id' => [
                 'PRIMARY-VALUE',
                 'SECONDARY-VALUE',
                 'ETC-VALUE',
             ],
         ],
-        'typeModels' => [
-            'someConfigType' => 'Reliv\RcmConfig\ConfigModel',
-        ],
         /* </example> */
-        'typeModels' => [
-        ],
     ],
+    /**
+     * Models
+     */
+    'Reliv\RcmConfig\Models' => [
+        /* <example> *
+        'someConfigType' => 'Reliv\RcmConfig\ConfigModel',
+        /* </example> */
+    ],
+    //
     'service_manager' => [
         'factories' => [
             'Reliv\RcmConfig\ConfigService' => 'Reliv\RcmConfig\Factory\ConfigService',

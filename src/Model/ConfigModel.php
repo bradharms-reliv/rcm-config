@@ -24,6 +24,12 @@ class ConfigModel implements ModelInterface, TypeModelInterface
      * @var string
      */
     protected $defaultKey = '_DEFAULT';
+
+    /**
+     * @var string
+     */
+    protected $configKey = 'Reliv\RcmConfig';
+
     /**
      * @var array
      */
@@ -35,11 +41,12 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     protected $type = null;
 
     /**
-     * @param $config
+     * @param array $config
+     * @param null  $type
      */
     public function __construct($config, $type = null)
     {
-        $this->config = $config['Reliv\RcmConfig'];
+        $this->config = $config[$this->configKey];
         $this->setType($type);
     }
 
@@ -71,7 +78,7 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     }
 
     /**
-     * getFormats
+     * getAll
      *
      * @param mixed $id
      *
@@ -87,11 +94,11 @@ class ConfigModel implements ModelInterface, TypeModelInterface
 
         $default = $this->getDefault();
 
-        return [$default];
+        return $default;
     }
 
     /**
-     * getFormat
+     * getPrimary
      *
      * @param mixed $id
      *
@@ -108,7 +115,7 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     /**
      * getDefault
      *
-     * @return mixed
+     * @return array
      * @throws DefaultMissingException
      * @throws TypeMissingException
      */
@@ -117,7 +124,9 @@ class ConfigModel implements ModelInterface, TypeModelInterface
         $type = $this->getType();
 
         if (!isset($this->config[$type][$this->defaultKey])) {
-            throw new DefaultMissingException('ConfigModel requires default to be set');
+            throw new DefaultMissingException(
+                'ConfigModel requires default to be set'
+            );
         }
 
         return $this->config[$type][$this->defaultKey];
