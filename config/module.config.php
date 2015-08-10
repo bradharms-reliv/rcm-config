@@ -14,9 +14,11 @@ return [
             ],
         ],
         'typeModels' => [
-            'someConfigType' => 'Reliv\RcmConfig\Model',
+            'someConfigType' => 'Reliv\RcmConfig\ConfigModel',
         ],
         /* </example> */
+        'typeModels' => [
+        ],
     ],
     'service_manager' => [
         'factories' => [
