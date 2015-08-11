@@ -5,6 +5,7 @@ return [
      */
     'Reliv\RcmConfig' => [
         /* <example> *
+
         'someConfigType' => [
             '_DEFAULT' => [
                 'DEFAULT-FORMAT',
@@ -15,6 +16,7 @@ return [
                 'ETC-VALUE',
             ],
         ],
+
         /* </example> */
     ],
     /**
@@ -22,10 +24,14 @@ return [
      */
     'Reliv\RcmConfig\Models' => [
         /* <example> *
+
         'someConfigType' => 'Reliv\RcmConfig\ConfigModel',
+
         /* </example> */
     ],
-    //
+    /**
+     * Services
+     */
     'service_manager' => [
         'factories' => [
             'Reliv\RcmConfig\ConfigService' => 'Reliv\RcmConfig\Factory\ConfigService',
