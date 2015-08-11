@@ -31,6 +31,6 @@ class ConfigModel implements FactoryInterface
     {
         $config = $serviceLocator->get('config');
 
-        return new \Reliv\RcmConfig\Model\ConfigModel($config);
+        return new \Reliv\RcmConfig\Model\ConfigModel($config, null);
     }
 }
