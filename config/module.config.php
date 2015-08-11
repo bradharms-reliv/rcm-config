@@ -1,5 +1,6 @@
 <?php
 return [
+
     /**
      * Configuration
      */
@@ -8,7 +9,8 @@ return [
 
         'someConfigType' => [
             '_DEFAULT' => [
-                'DEFAULT-FORMAT',
+                'DEFAULT-PRIMARY-VALUE',
+                'DEFAULT-ETC-VALUE',
             ],
             'id' => [
                 'PRIMARY-VALUE',
@@ -19,6 +21,7 @@ return [
 
         /* </example> */
     ],
+
     /**
      * Models
      */
@@ -29,6 +32,7 @@ return [
 
         /* </example> */
     ],
+    
     /**
      * Services
      */
