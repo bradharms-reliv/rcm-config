@@ -45,10 +45,37 @@ class ConfigService
     }
 
     /**
+     * Get All config entries
+     *
+     * @param $type
+     *
+     * @return array
+     * @throws ServiceConfigException
+     */
+    public function getList($type)
+    {
+        $model = $this->getModel($type);
+
+        return $model->getList();
+    }
+
+    /**
+     * Get All config entries with only value described by $key
+     *
+     * @return array
+     */
+    public function getListValue($type, $key, $default = null)
+    {
+        $model = $this->getModel($type);
+
+        return $model->getListValue($key, $default);
+    }
+
+    /**
      * Get All values of a config entry if found
      * If entry not found, call get default values
      *
-     * @param string $type
+     * @param string     $type
      * @param string|int $id
      *
      * @return array
@@ -65,10 +92,10 @@ class ConfigService
      * Get specific value by key of an entry if found
      * If entry not found, get value by key of default
      *
-     * @param string $type
+     * @param string     $type
      * @param string|int $id
-     * @param string $key
-     * @param mixed $default
+     * @param string     $key
+     * @param mixed      $default
      *
      * @return mixed
      * @throws ServiceConfigException
@@ -84,7 +111,7 @@ class ConfigService
      * Get primary (first) value of an entry if found
      * If entry not found, get first value of default
      *
-     * @param string $type
+     * @param string     $type
      * @param string|int $id
      *
      * @return mixed
@@ -100,13 +127,12 @@ class ConfigService
     /**
      * Get default values
      *
-     * @param string $type
-     * @param string|int $id
+     * @param string     $type
      *
      * @return mixed
      * @throws ServiceConfigException
      */
-    public function getDefault($type, $id)
+    public function getDefault($type)
     {
         $model = $this->getModel($type);
 

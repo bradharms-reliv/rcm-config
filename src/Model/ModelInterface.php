@@ -17,6 +17,22 @@ namespace Reliv\RcmConfig\Model;
  */
 interface ModelInterface
 {
+    /**
+     * Get All config entries
+     *
+     * @return array
+     */
+    public function getList();
+
+    /**
+     * Get All config entries with only value described by $key
+     *
+     * @param      $key
+     * @param null $default
+     *
+     * @return mixed
+     */
+    public function getListValue($key, $default = null);
 
     /**
      * Get All values of a config entry if found
@@ -34,7 +50,7 @@ interface ModelInterface
      *
      * @param string|int $id
      * @param string     $key
-     * @param mixed $default
+     * @param mixed      $default
      *
      * @return mixed
      */

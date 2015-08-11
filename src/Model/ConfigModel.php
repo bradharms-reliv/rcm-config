@@ -78,6 +78,42 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     }
 
     /**
+     * Get All config entries
+     *
+     * @return array
+     */
+    public function getList()
+    {
+        $type = $this->getType();
+
+        $list = $this->config[$type];
+
+        foreach ($list as $id => $config) {
+            $list[$id] = $this->getAll($id);
+        }
+
+        return $list;
+    }
+
+    /**
+     * Get All config entries with only value described by $key
+     *
+     * @return array
+     */
+    public function getListValue($key, $default = null)
+    {
+        $type = $this->getType();
+
+        $list = $this->config[$type];
+
+        foreach ($list as $id => $config) {
+            $list[$id] = $this->getValue($id, $key, $default);
+        }
+
+        return $list;
+    }
+
+    /**
      * Get All values of a config entry if found
      * If entry not found, call get default values
      *
