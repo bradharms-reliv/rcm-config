@@ -25,7 +25,7 @@ class ConfigModel implements FactoryInterface
      *
      * @param ServiceLocatorInterface $serviceLocator Zend Service Locator
      *
-     * @return \Reliv\RcmConfig\Service\ConfigService
+     * @return \Reliv\RcmConfig\Model\ConfigModel
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

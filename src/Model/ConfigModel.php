@@ -91,13 +91,14 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     {
         $type = $this->getType();
 
+        $entry = $this->getDefault();
+
         if (isset($this->config[$type][$id])) {
-            return $this->config[$type][$id];
+            $actual = $this->config[$type][$id];
+            $entry = array_merge($entry, $actual);
         }
 
-        $default = $this->getDefault();
-
-        return $default;
+        return $entry;
     }
 
     /**
