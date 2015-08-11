@@ -7,6 +7,11 @@ RCM Config
 ##### Module description: #####
 Extend the functionality of ZF2 config as well as allow config sources to be changed
 
+- Models my be written and injected to pull from any source
+- ZF2 Config model is available by default
+- Allows for config sources to be changed without impact to existing code
+- Allows for a standard for storing config values
+
 ##### Company:
 Reliv' International
 

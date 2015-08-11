@@ -45,7 +45,8 @@ class ConfigService
     }
 
     /**
-     * getAll
+     * Get All values of a config entry if found
+     * If entry not found, call get default values
      *
      * @param string $type
      * @param string|int $id
@@ -61,7 +62,8 @@ class ConfigService
     }
 
     /**
-     * getValue
+     * Get specific value by key of an entry if found
+     * If entry not found, get value by key of default
      *
      * @param string $type
      * @param string|int $id
@@ -79,7 +81,8 @@ class ConfigService
     }
 
     /**
-     * getPrimary
+     * Get primary (first) value of an entry if found
+     * If entry not found, get first value of default
      *
      * @param string $type
      * @param string|int $id
@@ -95,7 +98,7 @@ class ConfigService
     }
 
     /**
-     * getDefault
+     * Get default values
      *
      * @param string $type
      * @param string|int $id
