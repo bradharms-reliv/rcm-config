@@ -25,4 +25,12 @@ interface TypeModelInterface
      * @return array
      */
     public function setType($type);
+
+    /**
+     * setType
+     *
+     * @return string
+     */
+    public function getType();
+
 }

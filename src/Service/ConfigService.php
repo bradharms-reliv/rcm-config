@@ -47,8 +47,8 @@ class ConfigService
     /**
      * getAll
      *
-     * @param $type
-     * @param $id
+     * @param string $type
+     * @param string|int $id
      *
      * @return array
      * @throws ServiceConfigException
@@ -61,10 +61,28 @@ class ConfigService
     }
 
     /**
+     * getValue
+     *
+     * @param string $type
+     * @param string|int $id
+     * @param string $key
+     * @param mixed $default
+     *
+     * @return mixed
+     * @throws ServiceConfigException
+     */
+    public function getValue($type, $id, $key, $default)
+    {
+        $model = $this->getModel($type);
+
+        return $model->getValue($id, $key, $default);
+    }
+
+    /**
      * getPrimary
      *
-     * @param $type
-     * @param $id
+     * @param string $type
+     * @param string|int $id
      *
      * @return mixed
      * @throws ServiceConfigException
@@ -79,8 +97,8 @@ class ConfigService
     /**
      * getDefault
      *
-     * @param $type
-     * @param $id
+     * @param string $type
+     * @param string|int $id
      *
      * @return mixed
      * @throws ServiceConfigException

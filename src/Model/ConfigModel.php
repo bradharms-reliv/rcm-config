@@ -78,11 +78,14 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     }
 
     /**
-     * getAll
+     * Get All values of a config entry if found
+     * If entry not found, call get default values
      *
-     * @param mixed $id
+     * @param string|int $id
      *
      * @return array
+     * @throws DefaultMissingException
+     * @throws TypeMissingException
      */
     public function getAll($id)
     {
@@ -98,11 +101,33 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     }
 
     /**
-     * getPrimary
+     * Get specific value by key of an entry if found
+     * If entry not found, get value by key of default
      *
-     * @param mixed $id
+     * @param string|int $id
+     * @param string     $key
+     * @param mixed      $default
      *
-     * @return string
+     * @return mixed
+     */
+    public function getValue($id, $key, $default = null)
+    {
+        $all = $this->getAll($id);
+
+        if (array_key_exists($key, $all)) {
+            return $all[$key];
+        }
+
+        return $default;
+    }
+
+    /**
+     * Get primary (first) value of an entry if found
+     * If entry not found, get first value of default
+     *
+     * @param string|int $id
+     *
+     * @return mixed
      */
     public function getPrimary($id)
     {
@@ -113,7 +138,7 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     }
 
     /**
-     * getDefault
+     * Get default values
      *
      * @return array
      * @throws DefaultMissingException

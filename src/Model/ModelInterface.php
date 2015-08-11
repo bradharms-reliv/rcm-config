@@ -19,25 +19,39 @@ interface ModelInterface
 {
 
     /**
-     * getAll
+     * Get All values of a config entry if found
+     * If entry not found, call get default values
      *
-     * @param mixed $id
+     * @param string|int $id
      *
      * @return array
      */
     public function getAll($id);
 
     /**
-     * getPrimary
+     * Get specific value by key of an entry if found
+     * If entry not found, get value by key of default
      *
-     * @param mixed $id
+     * @param string|int $id
+     * @param string     $key
+     * @param mixed $default
+     *
+     * @return mixed
+     */
+    public function getValue($id, $key, $default = null);
+
+    /**
+     * Get primary (first) value of an entry if found
+     * If entry not found, get first value of default
+     *
+     * @param string|int $id
      *
      * @return mixed
      */
     public function getPrimary($id);
 
     /**
-     * getDefault
+     * Get default values
      *
      * @return array
      */
