@@ -100,7 +100,7 @@ class ConfigService
      * @return mixed
      * @throws ServiceConfigException
      */
-    public function getValue($type, $id, $key, $default)
+    public function getValue($type, $id, $key, $default = null)
     {
         $model = $this->getModel($type);
 
@@ -147,7 +147,7 @@ class ConfigService
      * @return ModelInterface
      * @throws ServiceConfigException
      */
-    protected function getModel($type)
+    public function getModel($type)
     {
         $type = (string)$type;
 
