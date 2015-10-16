@@ -1,5 +1,5 @@
 {
-  "name": "reliv/rcm-config",
+  "name": "rcm/config",
   "description": "Extend the functionality of ZF2 config as well as allow config sources to be changed",
   "type": "library",
   "license": "BSD-3-Clause",
