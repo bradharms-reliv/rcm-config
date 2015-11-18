@@ -2,6 +2,26 @@
 return [
 
     /**
+     * Doctrine Config - Used for DoctrineModel
+     */
+    'doctrine' => [
+        'driver' => [
+            'Reliv\RcmConfig' => [
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => [
+                    __DIR__ . '/../src/Entity'
+                ]
+            ],
+            'orm_default' => [
+                'drivers' => [
+                    'Reliv\RcmConfig' => 'Reliv\RcmConfig'
+                ]
+            ]
+        ]
+    ],
+
+    /**
      * Configuration
      */
     'Reliv\RcmConfig' => [
