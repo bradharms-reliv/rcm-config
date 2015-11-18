@@ -39,20 +39,40 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
     $configService = $serviceLocator->get('Reliv\RcmConfig\ConfigService');
 
     $value = $configService->getValue(
-        'myPropertyName1',
+        'myCategory',
         'myContext',
-        'myPropertyName1
+        'myPropertyName1'
     );
     /** Outputs: 'my value over-ride'
     var_dump($value);
     
     $value = $configService->getValue(
-        'myPropertyName1',
+        'myCategory',
         'myContext',
-        'myPropertyName2
+        'myPropertyName2'
     );
     /** Outputs: ['my value1', 'my value2']
     var_dump($value);
+    
+    /** Other Methods */
+    var_dump(
+        'getValue',
+        $cs->getValue(
+           'myCategory',
+           'myContext',
+           'myPropertyName1'
+        ),
+        'getList',
+        $cs->getList('myCategory'),
+        'getAll',
+        $cs->getAll('myCategory', 'myContext'),
+        'getDefault',
+        $cs->getDefault('myCategory'),
+        'getListValue',
+        $cs->getListValue('myCategory', 'myPropertyName1'),
+        'getPrimary',
+        $cs->getPrimary('myCategory', 'myContext')
+    );
 ```
 
 ##### Project author: #####
