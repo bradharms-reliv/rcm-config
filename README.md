@@ -76,8 +76,8 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
 ```
 
 ##### Project author: #####
-James Jervis
-jjervis@relivinc.com
-https://github.com/reliv/rcm-config
-Copyright (c) 2015, Reliv' International
+    James Jervis
+    jjervis@relivinc.com
+    https://github.com/reliv/rcm-config
+    Copyright (c) 2015, Reliv' International
 
