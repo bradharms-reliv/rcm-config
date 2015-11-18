@@ -33,7 +33,7 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     /**
      * @var array
      */
-    protected $config;
+    protected $config = [];
 
     /**
      * @var string
@@ -48,6 +48,18 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     {
         $this->config = $config[$this->configKey];
         $this->setType($type);
+    }
+
+    /**
+     * getTypeConfig
+     *
+     * @param string $type
+     *
+     * @return array
+     */
+    public function getTypeConfig($type)
+    {
+        return $this->config[$type];
     }
 
     /**
@@ -86,7 +98,7 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     {
         $type = $this->getType();
 
-        $list = $this->config[$type];
+        $list = $this->getTypeConfig($type);
 
         foreach ($list as $id => $config) {
             $list[$id] = $this->getAll($id);
@@ -104,7 +116,7 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     {
         $type = $this->getType();
 
-        $list = $this->config[$type];
+        $list = $this->getTypeConfig($type);
 
         foreach ($list as $id => $config) {
             $list[$id] = $this->getValue($id, $key, $default);
@@ -129,8 +141,10 @@ class ConfigModel implements ModelInterface, TypeModelInterface
 
         $entry = $this->getDefault();
 
-        if (isset($this->config[$type][$id])) {
-            $actual = $this->config[$type][$id];
+        $typeConfig = $this->getTypeConfig($type);
+
+        if (isset($typeConfig[$id])) {
+            $actual = $typeConfig[$id];
             $entry = array_merge($entry, $actual);
         }
 
@@ -185,12 +199,14 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     {
         $type = $this->getType();
 
-        if (!isset($this->config[$type][$this->defaultKey])) {
+        $typeConfig = $this->getTypeConfig($type);
+
+        if (!isset($typeConfig[$this->defaultKey])) {
             throw new DefaultMissingException(
                 'ConfigModel requires default to be set'
             );
         }
 
-        return $this->config[$type][$this->defaultKey];
+        return $typeConfig[$this->defaultKey];
     }
 }
