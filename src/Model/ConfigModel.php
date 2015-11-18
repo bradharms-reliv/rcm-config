@@ -3,7 +3,8 @@
 namespace Reliv\RcmConfig\Model;
 
 use Reliv\RcmConfig\Exception\DefaultMissingException;
-use Reliv\RcmConfig\Exception\TypeMissingException;
+use Reliv\RcmConfig\Exception\CategoryMissingException;
+use Reliv\RcmConfig\Exception\SaveNotSupportedException;
 
 /**
  * Class ConfigModel
@@ -18,13 +19,8 @@ use Reliv\RcmConfig\Exception\TypeMissingException;
  * @version   Release: <package_version>
  * @link      https://github.com/reliv
  */
-class ConfigModel implements ModelInterface, TypeModelInterface
+class ConfigModel implements ModelInterface, CategoryModelInterface
 {
-    /**
-     * @var string
-     */
-    protected $defaultKey = '_DEFAULT';
-
     /**
      * @var string
      */
@@ -38,55 +34,55 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     /**
      * @var string
      */
-    protected $type = null;
+    protected $category = null;
 
     /**
      * @param array $config
-     * @param null  $type
+     * @param null  $category
      */
-    public function __construct($config, $type = null)
+    public function __construct($config, $category = null)
     {
         $this->config = $config[$this->configKey];
-        $this->setType($type);
+        $this->setCategory($category);
     }
 
     /**
-     * getTypeConfig
+     * getCategoryConfig
      *
-     * @param string $type
+     * @param string $category
      *
      * @return array
      */
-    public function getTypeConfig($type)
+    public function getCategoryConfig($category)
     {
-        return $this->config[$type];
+        return $this->config[$category];
     }
 
     /**
-     * setType
+     * setCategory
      *
-     * @param string $type
+     * @param string $category
      *
      * @return void
      */
-    public function setType($type)
+    public function setCategory($category)
     {
-        $this->type = (string)$type;
+        $this->category = (string)$category;
     }
 
     /**
-     * getType
+     * getCategory
      *
      * @return string
-     * @throws TypeMissingException
+     * @throws CategoryMissingException
      */
-    public function getType()
+    public function getCategory()
     {
-        if (empty($this->type)) {
-            throw new TypeMissingException('ConfigModel requires type to be set');
+        if (empty($this->category)) {
+            throw new CategoryMissingException('ConfigModel requires category to be set');
         }
 
-        return $this->type;
+        return $this->category;
     }
 
     /**
@@ -96,30 +92,30 @@ class ConfigModel implements ModelInterface, TypeModelInterface
      */
     public function getList()
     {
-        $type = $this->getType();
+        $category = $this->getCategory();
 
-        $list = $this->getTypeConfig($type);
+        $list = $this->getCategoryConfig($category);
 
-        foreach ($list as $id => $config) {
-            $list[$id] = $this->getAll($id);
+        foreach ($list as $context => $config) {
+            $list[$context] = $this->getAll($context);
         }
 
         return $list;
     }
 
     /**
-     * Get All config entries with only value described by $key
+     * Get All config entries with only value described by $name
      *
      * @return array
      */
-    public function getListValue($key, $default = null)
+    public function getListValue($name, $default = null)
     {
-        $type = $this->getType();
+        $category = $this->getCategory();
 
-        $list = $this->getTypeConfig($type);
+        $list = $this->getCategoryConfig($category);
 
-        foreach ($list as $id => $config) {
-            $list[$id] = $this->getValue($id, $key, $default);
+        foreach ($list as $context => $config) {
+            $list[$context] = $this->getValue($context, $name, $default);
         }
 
         return $list;
@@ -129,22 +125,22 @@ class ConfigModel implements ModelInterface, TypeModelInterface
      * Get All values of a config entry if found
      * If entry not found, call get default values
      *
-     * @param string|int $id
+     * @param string|int $context
      *
      * @return array
      * @throws DefaultMissingException
-     * @throws TypeMissingException
+     * @throws CategoryMissingException
      */
-    public function getAll($id)
+    public function getAll($context)
     {
-        $type = $this->getType();
+        $category = $this->getCategory();
 
         $entry = $this->getDefault();
 
-        $typeConfig = $this->getTypeConfig($type);
+        $categoryConfig = $this->getCategoryConfig($category);
 
-        if (isset($typeConfig[$id])) {
-            $actual = $typeConfig[$id];
+        if (isset($categoryConfig[$context])) {
+            $actual = $categoryConfig[$context];
             $entry = array_merge($entry, $actual);
         }
 
@@ -152,21 +148,21 @@ class ConfigModel implements ModelInterface, TypeModelInterface
     }
 
     /**
-     * Get specific value by key of an entry if found
-     * If entry not found, get value by key of default
+     * Get specific value by name of an entry if found
+     * If entry not found, get value by name of default
      *
-     * @param string|int $id
-     * @param string     $key
+     * @param string|int $context
+     * @param string     $name
      * @param mixed      $default
      *
      * @return mixed
      */
-    public function getValue($id, $key, $default = null)
+    public function getValue($context, $name, $default = null)
     {
-        $all = $this->getAll($id);
+        $all = $this->getAll($context);
 
-        if (array_key_exists($key, $all)) {
-            return $all[$key];
+        if (array_key_exists($name, $all)) {
+            return $all[$name];
         }
 
         return $default;
@@ -176,13 +172,13 @@ class ConfigModel implements ModelInterface, TypeModelInterface
      * Get primary (first) value of an entry if found
      * If entry not found, get first value of default
      *
-     * @param string|int $id
+     * @param string|int $context
      *
      * @return mixed
      */
-    public function getPrimary($id)
+    public function getPrimary($context)
     {
-        $all = $this->getAll($id);
+        $all = $this->getAll($context);
 
         // Get the first in the array
         return $all[array_keys($all)[0]];
@@ -193,20 +189,20 @@ class ConfigModel implements ModelInterface, TypeModelInterface
      *
      * @return array
      * @throws DefaultMissingException
-     * @throws TypeMissingException
+     * @throws CategoryMissingException
      */
     public function getDefault()
     {
-        $type = $this->getType();
+        $category = $this->getCategory();
 
-        $typeConfig = $this->getTypeConfig($type);
+        $categoryConfig = $this->getCategoryConfig($category);
 
-        if (!isset($typeConfig[$this->defaultKey])) {
+        if (!isset($categoryConfig[ModelInterface::DEFAULT_CONTEXT])) {
             throw new DefaultMissingException(
                 'ConfigModel requires default to be set'
             );
         }
 
-        return $typeConfig[$this->defaultKey];
+        return $categoryConfig[ModelInterface::DEFAULT_CONTEXT];
     }
 }

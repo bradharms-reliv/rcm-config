@@ -3,7 +3,7 @@
 namespace Reliv\RcmConfig\Model;
 
 /**
- * Class TypeModelInterface
+ * Class CategoryModelInterface
  *
  * PHP version 5
  *
@@ -15,22 +15,22 @@ namespace Reliv\RcmConfig\Model;
  * @version   Release: <package_version>
  * @link      https://github.com/reliv
  */
-interface TypeModelInterface
+interface CategoryModelInterface
 {
     /**
-     * setType
+     * setCategory
      *
-     * @param string $type
+     * @param string $category
      *
      * @return array
      */
-    public function setType($type);
+    public function setCategory($category);
 
     /**
-     * setType
+     * setCategory
      *
      * @return string
      */
-    public function getType();
+    public function getCategory();
 
 }

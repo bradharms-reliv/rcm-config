@@ -36,21 +36,21 @@ class RcmConfig
      *
      * @ORM\Column(type="string", nullable=false)
      */
-    protected $entryType;
+    protected $category;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", nullable=false)
      */
-    protected $entryId = '';
+    protected $context = '';
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", nullable=false)
      */
-    protected $key = '';
+    protected $name = '';
 
     /**
      * @var mixed
@@ -60,6 +60,8 @@ class RcmConfig
     protected $value = '';
 
     /**
+     * getId
+     *
      * @return int
      */
     public function getId()
@@ -68,69 +70,69 @@ class RcmConfig
     }
 
     /**
-     * getEntryType
+     * getCategory
      *
      * @return string
      */
-    public function getEntryType()
+    public function getCategory()
     {
-        return $this->entryType;
+        return $this->category;
     }
 
     /**
-     * setEntryType
+     * setCategory
      *
-     * @param string $entryType
+     * @param $category
      *
      * @return void
      */
-    public function setEntryType($entryType)
+    public function setCategory($category)
     {
-        $this->entryType = (string) $entryType;
+        $this->category = (string) $category;
     }
 
     /**
-     * getEntryId
+     * getContext
      *
      * @return string
      */
-    public function getEntryId()
+    public function getContext()
     {
-        return $this->entryId;
+        return $this->context;
     }
 
     /**
-     * setEntryId
+     * setContext
      *
-     * @param string $entryId
+     * @param $context
      *
      * @return void
      */
-    public function setEntryId($entryId)
+    public function setContext($context)
     {
-        $this->entryId = (string) $entryId;
+        $this->context = (string)$context;
     }
 
     /**
-     * getKey
+     * getName
      *
      * @return string
      */
-    public function getKey()
+    public function getName()
     {
-        return $this->key;
+        return $this->name;
     }
 
     /**
-     * setKey
+     * setName
      *
-     * @param $key
+     * @param $name
      *
      * @return void
      */
-    public function setKey($key)
+    public function setName($name)
     {
-        $this->key = (string) $key;
+        $this->name = (string) $name;
     }
 
     /**

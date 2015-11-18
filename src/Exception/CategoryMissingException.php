@@ -3,7 +3,7 @@
 namespace Reliv\RcmConfig\Exception;
 
 /**
- * Class TypeMissingException
+ * Class CategoryMissingException
  *
  * PHP version 5
  *
@@ -15,7 +15,7 @@ namespace Reliv\RcmConfig\Exception;
  * @version   Release: <package_version>
  * @link      https://github.com/reliv
  */
-class TypeMissingException extends \Exception
+class CategoryMissingException extends \Exception
 {
 
 }

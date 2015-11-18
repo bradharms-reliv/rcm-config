@@ -27,12 +27,12 @@ return [
     'Reliv\RcmConfig' => [
         /* <example> *
 
-        'someConfigType' => [
+        'someConfigCategory' => [
             '_DEFAULT' => [
                 'DEFAULT-PRIMARY-VALUE',
                 'DEFAULT-ETC-VALUE',
             ],
-            'id' => [
+            'context' => [
                 'PRIMARY-VALUE',
                 'SECONDARY-VALUE',
                 'ETC-VALUE',
@@ -48,7 +48,7 @@ return [
     'Reliv\RcmConfig\Models' => [
         /* <example> *
 
-        'someConfigType' => 'Reliv\RcmConfig\ConfigModel',
+        'someConfigCategory' => 'Reliv\RcmConfig\ConfigModel',
 
         /* </example> */
     ],
