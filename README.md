@@ -43,7 +43,7 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
         'myContext',
         'myPropertyName1'
     );
-    /** Outputs: 'my value over-ride'
+    /** Outputs: 'my value over-ride' */
     var_dump($value);
     
     $value = $configService->getValue(
@@ -51,7 +51,7 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
         'myContext',
         'myPropertyName2'
     );
-    /** Outputs: ['my value1', 'my value2']
+    /** Outputs: ['my value1', 'my value2'] */
     var_dump($value);
     
     /** Other Methods */
