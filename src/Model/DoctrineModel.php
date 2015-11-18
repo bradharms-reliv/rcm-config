@@ -3,8 +3,6 @@
 namespace Reliv\RcmConfig\Model;
 
 use Doctrine\ORM\EntityManager;
-use Reliv\RcmConfig\Exception\DefaultMissingException;
-use Reliv\RcmConfig\Exception\TypeMissingException;
 
 /**
  * Class DoctrineModel
@@ -51,15 +49,27 @@ class DoctrineModel extends ConfigModel
             $query = $this->entityManager->createQueryBuilder()
                 ->select('config')
                 ->from(
-                    'Reliv\RcmConfig\Entity\RcmConfig',
+                    '\Reliv\RcmConfig\Entity\RcmConfig',
                     'config',
                     'config.entryId'
                 )
-                ->where(['config.entryType' => ':type'])
+                ->where('config.entryType = :type')
                 ->getQuery();
             $query->setParameter('type', $type);
 
-            $this->config[$type] = $query->getArrayResult();
+            $results = $query->getResult();
+            $preparedResult = [];
+
+            /**
+             * @var  $id
+             * @var \Reliv\RcmConfig\Entity\RcmConfig $item
+             */
+            foreach ($results as $id => $item) {
+                $preparedResult[$id] = [];
+                $preparedResult[$id][$item->getKey()] = $item->getValue();
+            }
+
+            $this->config[$type] = $preparedResult;
         }
 
         return $this->config[$type];

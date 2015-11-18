@@ -46,6 +46,13 @@ class RcmConfig
     protected $entryId = '';
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=false)
+     */
+    protected $key = '';
+
+    /**
      * @var mixed
      *
      * @ORM\Column(type="text")
@@ -79,7 +86,7 @@ class RcmConfig
      */
     public function setEntryType($entryType)
     {
-        $this->entryType = $entryType;
+        $this->entryType = (string) $entryType;
     }
 
     /**
@@ -101,7 +108,29 @@ class RcmConfig
      */
     public function setEntryId($entryId)
     {
-        $this->entryId = $entryId;
+        $this->entryId = (string) $entryId;
+    }
+
+    /**
+     * getKey
+     *
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * setKey
+     *
+     * @param $key
+     *
+     * @return void
+     */
+    public function setKey($key)
+    {
+        $this->key = (string) $key;
     }
 
     /**
