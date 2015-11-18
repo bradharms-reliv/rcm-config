@@ -60,6 +60,7 @@ return [
         'factories' => [
             'Reliv\RcmConfig\ConfigService' => 'Reliv\RcmConfig\Factory\ConfigService',
             'Reliv\RcmConfig\ConfigModel' => 'Reliv\RcmConfig\Factory\ConfigModel',
+            'Reliv\RcmConfig\DoctrineModel' => 'Reliv\RcmConfig\Factory\DoctrineModel',
         ]
     ],
 ];
