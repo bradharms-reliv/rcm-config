@@ -60,12 +60,6 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
     
     /** Other Methods */
     var_dump(
-        'getValue',
-        $cs->getValue(
-           'myCategory',
-           'myContext',
-           'myPropertyName1'
-        ),
         'getList',
         $cs->getList('myCategory'),
         'getAll',
