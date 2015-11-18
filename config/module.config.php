@@ -49,7 +49,7 @@ return [
     'Reliv\RcmConfig\Models' => [
         /* <example> *
 
-        'someConfigCategory' => 'Reliv\RcmConfig\ConfigModel',
+        'myCategory' => 'Reliv\RcmConfig\ConfigModel',
 
         /* </example> */
     ],

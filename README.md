@@ -17,7 +17,7 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
 ```php
 <?php
     // Example of a config array as might be defined in ZF2 config
-    [
+    'Reliv\RcmConfig' => [
         'myCategory' => [
             '_DEFAULT' => [
                 'myPropertyName1' => 'my value',
@@ -27,7 +27,11 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
                 'myPropertyName1' => 'my value over-ride',
             ]
         ]
-    ];
+    ],
+    // Example of defining a model for a category
+    'Reliv\RcmConfig\Models' => [
+        'myCategory' => 'Reliv\RcmConfig\ConfigModel',
+    ],
 ```
 
 ##### Usage Example
@@ -43,7 +47,7 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
         'myContext',
         'myPropertyName1'
     );
-    /** Outputs: 'my value over-ride'
+    /** Outputs: 'my value over-ride' */
     var_dump($value);
     
     $value = $configService->getValue(
@@ -51,17 +55,11 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
         'myContext',
         'myPropertyName2'
     );
-    /** Outputs: ['my value1', 'my value2']
+    /** Outputs: ['my value1', 'my value2'] */
     var_dump($value);
     
     /** Other Methods */
     var_dump(
-        'getValue',
-        $cs->getValue(
-           'myCategory',
-           'myContext',
-           'myPropertyName1'
-        ),
         'getList',
         $cs->getList('myCategory'),
         'getAll',
@@ -76,8 +74,12 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
 ```
 
 ##### Project author: #####
+
 James Jervis
+
 jjervis@relivinc.com
+
 https://github.com/reliv/rcm-config
+
 Copyright (c) 2015, Reliv' International
 
