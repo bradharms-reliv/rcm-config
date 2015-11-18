@@ -17,7 +17,7 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
 ```php
 <?php
     // Example of a config array as might be defined in ZF2 config
-    [
+    'Reliv\RcmConfig' => [
         'myCategory' => [
             '_DEFAULT' => [
                 'myPropertyName1' => 'my value',
@@ -27,7 +27,11 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
                 'myPropertyName1' => 'my value over-ride',
             ]
         ]
-    ];
+    ],
+    // Example of defining a model for a category
+    'Reliv\RcmConfig\Models' => [
+        'myCategory' => 'Reliv\RcmConfig\ConfigModel',
+    ],
 ```
 
 ##### Usage Example
