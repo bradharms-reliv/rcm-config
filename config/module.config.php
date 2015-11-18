@@ -27,23 +27,24 @@ return [
     'Reliv\RcmConfig' => [
         /* <example> *
 
-        'someConfigCategory' => [
-            '_DEFAULT' => [
-                'DEFAULT-PRIMARY-VALUE',
-                'DEFAULT-ETC-VALUE',
-            ],
-            'context' => [
-                'PRIMARY-VALUE',
-                'SECONDARY-VALUE',
-                'ETC-VALUE',
-            ],
-        ],
+        [
+            'myCategory' => [
+                '_DEFAULT' => [
+                    'myPropertyName1' => 'my value',
+                    'myPropertyName2' => ['my value1', 'my value2'],
+                ],
+                'myContext' => [
+                    'myPropertyName1' => 'my value over-ride',
+                ]
+            ]
+        ]
 
         /* </example> */
     ],
 
     /**
-     * Models
+     * Models:
+     * Configure each category to use a model to access the data
      */
     'Reliv\RcmConfig\Models' => [
         /* <example> *

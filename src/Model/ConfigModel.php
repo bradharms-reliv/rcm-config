@@ -4,7 +4,6 @@ namespace Reliv\RcmConfig\Model;
 
 use Reliv\RcmConfig\Exception\DefaultMissingException;
 use Reliv\RcmConfig\Exception\CategoryMissingException;
-use Reliv\RcmConfig\Exception\SaveNotSupportedException;
 
 /**
  * Class ConfigModel

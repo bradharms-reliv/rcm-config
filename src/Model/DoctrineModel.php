@@ -51,9 +51,9 @@ class DoctrineModel extends ConfigModel
                 ->from(
                     '\Reliv\RcmConfig\Entity\RcmConfig',
                     'config',
-                    'config.entryContext'
+                    'config.context'
                 )
-                ->where('config.entryCategory = :category')
+                ->where('config.category = :category')
                 ->getQuery();
             $query->setParameter('category', $category);
 
