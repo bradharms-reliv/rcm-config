@@ -18,6 +18,20 @@ namespace Reliv\RcmConfig\Model;
 interface ModelInterface
 {
     /**
+     * Default Context
+     */
+    const DEFAULT_CONTEXT = '_DEFAULT';
+
+    /**
+     * Get raw configuration for a category
+     *
+     * @param string $category
+     *
+     * @return array
+     */
+    public function getCategoryConfig($category);
+
+    /**
      * Get All config entries
      *
      * @return array
@@ -25,46 +39,46 @@ interface ModelInterface
     public function getList();
 
     /**
-     * Get All config entries with only value described by $key
+     * Get All config entries with only value described by $name
      *
-     * @param      $key
+     * @param      $name
      * @param null $default
      *
      * @return mixed
      */
-    public function getListValue($key, $default = null);
+    public function getListValue($name, $default = null);
 
     /**
      * Get All values of a config entry if found
      * If entry not found, call get default values
      *
-     * @param string|int $id
+     * @param string|int $context
      *
      * @return array
      */
-    public function getAll($id);
+    public function getAll($context);
 
     /**
-     * Get specific value by key of an entry if found
-     * If entry not found, get value by key of default
+     * Get specific value by name of an entry if found
+     * If entry not found, get value by name of default
      *
-     * @param string|int $id
-     * @param string     $key
+     * @param string|int $context
+     * @param string     $name
      * @param mixed      $default
      *
      * @return mixed
      */
-    public function getValue($id, $key, $default = null);
+    public function getValue($context, $name, $default = null);
 
     /**
      * Get primary (first) value of an entry if found
      * If entry not found, get first value of default
      *
-     * @param string|int $id
+     * @param string|int $context
      *
      * @return mixed
      */
-    public function getPrimary($id);
+    public function getPrimary($context);
 
     /**
      * Get default values

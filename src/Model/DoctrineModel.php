@@ -28,50 +28,50 @@ class DoctrineModel extends ConfigModel
      * DoctrineModel constructor.
      *
      * @param EntityManager $entityManager
-     * @param null          $type
+     * @param null          $category
      */
-    public function __construct(EntityManager $entityManager, $type = null)
+    public function __construct(EntityManager $entityManager, $category = null)
     {
         $this->entityManager = $entityManager;
-        $this->setType($type);
+        $this->setCategory($category);
     }
 
     /**
      * getConfig
      *
-     * @param string $type
+     * @param string $category
      *
      * @return array
      */
-    public function getTypeConfig($type)
+    public function getCategoryConfig($category)
     {
-        if (!array_key_exists($type, $this->config)) {
+        if (!array_key_exists($category, $this->config)) {
             $query = $this->entityManager->createQueryBuilder()
                 ->select('config')
                 ->from(
                     '\Reliv\RcmConfig\Entity\RcmConfig',
                     'config',
-                    'config.entryId'
+                    'config.context'
                 )
-                ->where('config.entryType = :type')
+                ->where('config.category = :category')
                 ->getQuery();
-            $query->setParameter('type', $type);
+            $query->setParameter('category', $category);
 
             $results = $query->getResult();
             $preparedResult = [];
 
             /**
-             * @var  $id
+             * @var  $context
              * @var \Reliv\RcmConfig\Entity\RcmConfig $item
              */
-            foreach ($results as $id => $item) {
-                $preparedResult[$id] = [];
-                $preparedResult[$id][$item->getKey()] = $item->getValue();
+            foreach ($results as $context => $item) {
+                $preparedResult[$context] = [];
+                $preparedResult[$context][$item->getName()] = $item->getValue();
             }
 
-            $this->config[$type] = $preparedResult;
+            $this->config[$category] = $preparedResult;
         }
 
-        return $this->config[$type];
+        return $this->config[$category];
     }
 }
