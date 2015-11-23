@@ -60,6 +60,13 @@ class RcmConfig
     protected $value = '';
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $description = '';
+
+    /**
      * getId
      *
      * @return int
@@ -88,7 +95,7 @@ class RcmConfig
      */
     public function setCategory($category)
     {
-        $this->category = (string) $category;
+        $this->category = (string)$category;
     }
 
     /**
@@ -132,7 +139,7 @@ class RcmConfig
      */
     public function setName($name)
     {
-        $this->name = (string) $name;
+        $this->name = (string)$name;
     }
 
     /**
@@ -155,5 +162,27 @@ class RcmConfig
     public function setValue($value)
     {
         $this->value = json_encode($value);
+    }
+
+    /**
+     * getDescription
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * setDescription
+     *
+     * @param string $description
+     *
+     * @return void
+     */
+    public function setDescription($description)
+    {
+        $this->description = (string)$description;
     }
 }
