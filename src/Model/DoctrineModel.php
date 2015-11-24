@@ -51,7 +51,7 @@ class DoctrineModel extends ConfigModel
                 ->from(
                     '\Reliv\RcmConfig\Entity\RcmConfig',
                     'config',
-                    'config.context'
+                    'config.id'
                 )
                 ->where('config.category = :category')
                 ->getQuery();
@@ -61,11 +61,14 @@ class DoctrineModel extends ConfigModel
             $preparedResult = [];
 
             /**
-             * @var  $context
+             * @var                                   $context
              * @var \Reliv\RcmConfig\Entity\RcmConfig $item
              */
-            foreach ($results as $context => $item) {
-                $preparedResult[$context] = [];
+            foreach ($results as $id => $item) {
+                $context = $item->getContext();
+                if (!array_key_exists($context, $preparedResult)) {
+                    $preparedResult[$context] = [];
+                }
                 $preparedResult[$context][$item->getName()] = $item->getValue();
             }
 
