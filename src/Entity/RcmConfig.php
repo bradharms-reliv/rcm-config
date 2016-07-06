@@ -3,6 +3,7 @@
 namespace Reliv\RcmConfig\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Reliv\RcmConfig\Exception\InvalidJsonException;
 
 /**
  * Class RcmConfig
@@ -146,10 +147,16 @@ class RcmConfig
      * getValue
      *
      * @return mixed
+     * @throws InvalidJsonException
      */
     public function getValue()
     {
-        return json_decode($this->value, true);
+        $value = json_decode($this->value, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new InvalidJsonException("Invalid JSON config value for id: " . $this->getId());
+        }
+
+        return $value;
     }
 
     /**
