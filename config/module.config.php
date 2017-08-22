@@ -7,7 +7,7 @@ return [
     'doctrine' => [
         'driver' => [
             'Reliv\RcmConfig' => [
-                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
                 'cache' => 'array',
                 'paths' => [
                     __DIR__ . '/../src/Entity'
@@ -49,7 +49,7 @@ return [
     'Reliv\RcmConfig\Models' => [
         /* <example> *
 
-        'myCategory' => 'Reliv\RcmConfig\ConfigModel',
+        'myCategory' => \Reliv\RcmConfig\Model\ConfigModel::class,
 
         /* </example> */
     ],
@@ -59,9 +59,24 @@ return [
      */
     'service_manager' => [
         'factories' => [
-            'Reliv\RcmConfig\ConfigService' => 'Reliv\RcmConfig\Factory\ConfigService',
-            'Reliv\RcmConfig\ConfigModel' => 'Reliv\RcmConfig\Factory\ConfigModel',
-            'Reliv\RcmConfig\DoctrineModel' => 'Reliv\RcmConfig\Factory\DoctrineModel',
+            // @todo BC ONLY
+            'Reliv\RcmConfig\ConfigService'
+            => \Reliv\RcmConfig\Factory\ConfigService::class,
+            // @todo BC ONLY
+            'Reliv\RcmConfig\ConfigModel'
+            => \Reliv\RcmConfig\Factory\ConfigModel::class,
+            // @todo BC ONLY
+            'Reliv\RcmConfig\DoctrineModel'
+            => \Reliv\RcmConfig\Factory\DoctrineModel::class,
+
+            \Reliv\RcmConfig\Service\ConfigService::class
+            => \Reliv\RcmConfig\Factory\ConfigService::class,
+
+            \Reliv\RcmConfig\Model\ConfigModel::class
+            => \Reliv\RcmConfig\Factory\ConfigModel::class,
+
+            \Reliv\RcmConfig\Model\DoctrineModel::class
+            => \Reliv\RcmConfig\Factory\DoctrineModel::class,
         ]
     ],
 ];

@@ -2,8 +2,8 @@
 
 namespace Reliv\RcmConfig\Model;
 
-use Reliv\RcmConfig\Exception\DefaultMissingException;
 use Reliv\RcmConfig\Exception\CategoryMissingException;
+use Reliv\RcmConfig\Exception\DefaultMissingException;
 
 /**
  * Class ConfigModel
@@ -78,7 +78,9 @@ class ConfigModel implements ModelInterface, CategoryModelInterface
     public function getCategory()
     {
         if (empty($this->category)) {
-            throw new CategoryMissingException('ConfigModel requires category to be set');
+            throw new CategoryMissingException(
+                'ConfigModel requires category to be set'
+            );
         }
 
         return $this->category;
