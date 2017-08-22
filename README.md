@@ -30,7 +30,7 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
     ],
     // Example of defining a model for a category
     'Reliv\RcmConfig\Models' => [
-        'myCategory' => 'Reliv\RcmConfig\ConfigModel',
+        'myCategory' => \Reliv\RcmConfig\Model\ConfigModel::class,
     ],
 ```
 
@@ -40,7 +40,7 @@ Extend the functionality of ZF2 config as well as allow config sources to be cha
 <?php
     /** Using /Zend\ServiceManager/ServiceManager as $serviceLocator */
 
-    $configService = $serviceLocator->get('Reliv\RcmConfig\ConfigService');
+    $configService = $serviceLocator->get(\Reliv\RcmConfig\Service\ConfigService::class);
 
     $value = $configService->getValue(
         'myCategory',
