@@ -153,7 +153,10 @@ class RcmConfig
     {
         $value = json_decode($this->value, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new InvalidJsonException("Invalid JSON config value for id: " . $this->getId());
+            throw new InvalidJsonException(
+                "Invalid JSON config value for id: " . $this->getId() .
+                ": " . json_last_error_msg()
+            );
         }
 
         return $value;
